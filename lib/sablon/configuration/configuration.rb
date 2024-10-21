@@ -122,7 +122,8 @@ module Sablon
             vals[1] = 'single' if vals[1] == 'solid'
             #
             props[:sz] = @defined_style_conversions[:node][:_sz].call(vals[0])
-            props[:val] = vals[1] if vals[1]
+            val = vals[1] || props[:val]
+            props[:val] = props[:sz] == '0' ? nil : val
             props[:color] = vals[2].delete('#') if vals[2]
             #
             return props
